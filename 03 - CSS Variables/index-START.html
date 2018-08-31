@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Scoped CSS Variables and JS</title>
 </head>
+
 <body>
   <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
 
@@ -21,7 +23,6 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
-
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -40,12 +41,30 @@
     }
 
     input {
-      width:100px;
+      width: 100px;
     }
   </style>
 
   <script>
+    var sp = document.getElementById('spacing');
+    var blur = document.getElementById('blur');
+    var bs = document.getElementById('base');
+    var h1 = document.getElementsByClassName('hl')[0];
+    var img = document.getElementsByTagName('img')[0];
+    var inputs = document.querySelectorAll('input');
+    inputs.forEach((item) => {
+      item.addEventListener('change', setColor)
+      item.addEventListener('mousemove', setColor)
+    })
+
+    function setColor() {
+      h1.style.color = bs.value;
+      img.style.filter = 'blur(' + blur.value + 'px)';
+      img.style.border = sp.value + 'px solid ' + bs.value;
+    }
+    setColor();
   </script>
 
 </body>
+
 </html>
